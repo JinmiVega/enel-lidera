@@ -1,0 +1,97 @@
+<h3>Registro de Planes de Desarrollo Individual</h3>
+<div class="botones right">
+  <button class="btn btn-pdf" (click)="enviarCorreo()" [disabled]="procesando">Enviar correo</button>
+  <button class="btn btn-pdf" (click)="exportarPDF()" [disabled]="procesando">Exportar PDF</button>
+  <button class="btn btn-guardar" (click)="exportarExcel()" [disabled]="procesando">Descargar Excel</button>
+</div>
+<table id="planes-pdi" class="table table-hover">
+	<thead class="thead-inverse">
+		<tr>
+			<th>#</th>
+      <th></th>
+      <th>Colaborador</th>
+      <th>Jefe</th>
+      <th colspan="2">Estado</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let plan of planes; let i = index" [attr.data-index]="i">
+			<td>{{i + 1}}</td>
+      <td><input type="checkbox" [value]="plan.activo" [(ngModel)]="plan.activo"></td>
+      <td>{{plan.nombres}}</td>
+      <td>{{plan.jefe[0]}}</td>
+      <td>
+        <span *ngIf="plan.activo01">Plan 1</span>
+        <i class="fa fa-check icono-info" aria-hidden="true" *ngIf="plan.activo01"></i>
+        <span *ngIf="plan.activo02">Plan 2</span>
+        <i class="fa fa-check icono-info" aria-hidden="true" *ngIf="plan.activo02"></i>
+      </td>
+      <td>
+        <!--<span class="enviado" *ngIf="plan.recibido[0]">Recibido</span>-->
+        <!--<span class="enviado" *ngIf="plan.enviado[0]">Enviado</span>-->
+      </td>
+			<td>
+        <!--<i class="fa fa-envelope-o icono-admin" aria-hidden="true" (click)="enviarCorreo(plan)"></i>-->
+				<i class="fa fa-pencil-square-o icono-admin" aria-hidden="true" (click)="editarPlan(plan)"></i>
+				<i class="fa fa-trash icono-admin" aria-hidden="true" (click)="mostrarConfirmacion(plan)"></i>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- confirmaEliminar -->
+<div class="modal fade" id="confirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminación de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Estás seguro que deseas eliminar los planes de desarrollo del colaborador:</p>
+        <p class="text-highlight">{{nombreColaboradorActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="eliminarPlan(planActual)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- planEliminado -->
+<div class="modal fade" id="planEliminado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <p>Se procedió a eliminar el plan</p>
+        <p class="text-highlight">{{nombreColaboradorActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- planEnviado -->
+<div class="modal fade" id="planEnviado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <p>Se procedió a enviar el plan</p>
+        <p class="text-highlight">{{nombreColaboradorActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

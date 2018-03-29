@@ -1,0 +1,120 @@
+<h3>Mantenimiento de Usuarios</h3>
+<table class="table table-hover">
+	<thead class="thead-inverse">
+		<tr>
+			<th>#</th>
+      <th>Nombres</th>
+      <th>Usuario</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let usuario of usuarios; let i = index" [attr.data-index]="i">
+			<td>{{i + 1}}</td>
+      <td>{{usuario.nombres}}</td>
+      <td>{{usuario.email}}</td>
+			<td>
+				<!--<i class="fa fa-unlock-alt icono-admin" aria-hidden="true" (click)="mostrarModalClave(usuario)"></i>-->
+				<i class="fa fa-trash icono-admin" aria-hidden="true" (click)="mostrarConfirmacion(usuario)"></i>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<!-- cambiarClave -->
+<div class="modal fade" id="cambiarClave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cambio de contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>A continuación, ingresa la nueva contraseña del usuario:</p>
+        <p class="text-highlight">{{nombreUsuarioActual}}</p>
+        <div class="row">
+          <div class="col-6">Contraseña nueva:</div>
+          <div class="col-6">
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="password">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">Repite contraseña:</div>
+          <div class="col-6">
+            <input class="form-control" type="password" id="passwordrepeat" name="passwordrepeat" [(ngModel)]="passwordrepeat">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="alert-error" *ngIf="error">{{error_message}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="cambiarClave()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- cambiosGuardados -->
+<div class="modal fade" id="cambiosGuardados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		    <p>La nueva contraseña del usuario</p>
+        <p class="text-highlight">{{nombreUsuarioActual}}</p>
+        <p>ha sido registrada.</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- confirmaEliminar -->
+<div class="modal fade" id="confirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminación de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Estás seguro que deseas eliminar al usuario:</p>
+        <p class="text-highlight">{{nombreUsuarioActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="eliminarColaborador(usuarioActual)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- usuarioEliminado -->
+<div class="modal fade" id="usuarioEliminado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <p>Se procedió a eliminar el usuario</p>
+        <p class="text-highlight">{{nombreUsuarioActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="login">
+	<form>
+		<h1>Lidera</h1>
+		<h3>Programa de alta especialización<br>en liderazgo</h3>
+		<div class="formulario">
+			<div class="form-group input">
+				<input class="form-control" type="text" placeholder="Indícanos tus correo electrónico" id="email" name="email" [(ngModel)]="email">
+			</div>
+			<div class="form-group">
+				<h5 *ngIf="error" class="alert alerta-principal">{{error_message}}</h5>
+			  <button class="btn btn-white" (click)="login()">Ingresar</button>
+			</div>
+		</div>
+	</form>
+</div>

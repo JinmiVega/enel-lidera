@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<div class="menu-administrador">
+	<ul class="lista-administrador">
+		<a routerLinkActive="menu-active" [routerLink]="['./home']">
+			<li class="link-administrador">
+				<i class="fa fa-dashboard"></i>
+				<span>
+					<b>Inicio</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./fechas']">
+			<li class="link-administrador">
+				<i class="fa fa-calendar"></i>
+				<span>
+					<b>Fechas</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./usuarios']">
+			<li class="link-administrador">
+				<i class="fa fa-user"></i>
+				<span>
+					<b>Usuarios</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./colaboradores']">
+			<li class="link-administrador">
+				<i class="fa fa-users"></i>
+				<span>
+					<b>Colaboradores</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./areas']">
+			<li class="link-administrador">
+				<i class="fa fa-thumb-tack"></i>
+				<span>
+					<b>Áreas de mejora</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./formaciones']">
+			<li class="link-administrador">
+				<i class="fa fa-book"></i>
+				<span>
+					<b>Formaciones</b>
+				</span>
+			</li>
+		</a>
+		<a routerLinkActive="menu-active" [routerLink]="['./planes']">
+			<li class="link-administrador">
+				<i class="fa fa-thermometer-three-quarters"></i>
+				<span>
+					<b>Planes</b>
+				</span>
+			</li>
+		</a>
+	</ul>
+</div>
+
+<div class="contenido-administrador">
+	<router-outlet></router-outlet>
+</div>

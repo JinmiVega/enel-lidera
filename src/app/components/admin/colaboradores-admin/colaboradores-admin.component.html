@@ -1,0 +1,109 @@
+<h3>Mantenimiento de Colaboradores</h3>
+<table class="table table-hover table-enel table-colaboradores">
+	<thead class="thead-inverse">
+		<tr>
+			<th>#</th>
+			<th>Es jefe?</th>
+			<th>Nombres</th>
+			<th>Email</th>
+			<th>Jefe</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let colaborador of colaboradores; let i = index" [attr.data-index]="i">
+			<td>{{i + 1}}</td>
+			<td>
+				<input type="checkbox" name="" [value]=true [disabled]="colaborador.disabled" [(ngModel)]="colaborador.es_jefe">
+			</td>
+			<td>
+				<input type="text" name="" [disabled]="colaborador.disabled" [(ngModel)]="colaborador.nombres">
+			</td>
+			<td>
+				<input type="text" name="" [disabled]="colaborador.disabled" [(ngModel)]="colaborador.email">
+			</td>
+			<td>
+				<select [(ngModel)]="colaborador.id_jefe" [ngModelOptions]="{standalone: true}" [disabled]="colaborador.disabled">
+			      <option *ngFor="let jefe of jefes; let i = index" [attr.data-index]="i" [ngValue]="jefe.id_colaborador">{{jefe.nombres}}</option>
+				</select>
+			</td>
+			<td>
+				<i class="fa fa-pencil-square-o icono-admin" aria-hidden="true" (click)="editarColaborador(i)" *ngIf="colaborador.disabled && !colaborador.botones_disabled"></i>
+				<i class="fa fa-trash icono-admin" aria-hidden="true" (click)="mostrarConfirmacion(colaborador)" *ngIf="colaborador.disabled && !colaborador.botones_disabled"></i>
+				<i class="fa fa-floppy-o icono-admin" aria-hidden="true" (click)="guardarColaborador(colaborador)" *ngIf="!colaborador.disabled"></i>
+				<i class="fa fa-times icono-admin" aria-hidden="true" (click)="cancelarColaborador(i)" *ngIf="!colaborador.disabled"></i>
+			</td>
+		</tr>
+		<tr>
+			<td width="5%"></td>
+			<td width="7%"></td>
+			<td width="30%"></td>
+			<td width="25%"></td>
+			<td width="25%"></td>
+			<td width="8%"></td>
+		</tr>
+	</tbody>
+</table>
+<p class="link-agregar" (click)="agregarColaborador()" *ngIf="!agregar_disabled">Agregar nuevo colaborador</p>
+
+<!--
+<div class="btn" (click)="encriptarClaves()">
+  Encriptar
+</div>
+-->
+
+<!-- confirmaEliminar -->
+<div class="modal fade" id="confirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminación de colaborador</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>Estás seguro que deseas eliminar al colaborador:</p>
+        <p class="text-highlight">{{nombreColaboradorActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="eliminarColaborador(colaboradorActual)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- colaboradorEliminado -->
+<div class="modal fade" id="colaboradorEliminado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Se procedió a eliminar el colaborador</p>
+		<p class="text-highlight">{{nombreColaboradorActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cambiosGuardados -->
+<div class="modal fade" id="cambiosGuardados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Los datos modificados del colaborador</p>
+		<p class="text-highlight">{{nombreColaboradorActual}}</p>
+		<p>han sido registrados.</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,419 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+Paleta de colores:
+	333
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Abel:400,600,900|Pacifico|Open+Sans');
+
+body{
+	/*font-family: 'Abel', sans-serif !important;*/
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+	margin: 0 !important;
+}
+
+/* GENERAL */
+.container-fluid{
+	width: 90% !important;
+}
+.centered{
+	text-align: center;
+}
+.right{
+	text-align: right !important;
+}
+.v-centered{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.fa-button{
+	cursor: pointer;
+}
+.full-page-banner{
+	height: calc(100vh - 80px) !important;
+}
+.modal-xlg{
+	min-width: 92% !important;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #F0F0F0 !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #F0F0F0 !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #F0F0F0 !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #F0F0F0 !important;
+}
+.inline{
+	display: inline-flex;
+}
+.modal-body > h3 > strong{
+	color: #0555FA;
+}
+.modal-body > div{
+	margin-top: 20px;
+}
+.modal-body > div > h3{
+	color: #0555FA;
+	font-size: 1.2rem;
+	border-top: 2px solid #0555FA;
+	padding-top: 10px;
+}
+.modal-body > h3{
+	font-size: 1.5rem;
+}
+.modal-body > h4{
+	font-size: 1.2rem;
+}
+.modal-body > h5{
+	font-size: 0.9rem;
+	color: #0555FA;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.modal-body > table{
+	width: 100%;
+	margin-top: 30px;
+}
+.modal-body > table > thead{
+	color: #FFF;
+	background-color: #0555FA;
+}
+.modal-body > table > tbody > tr > td > i{
+	color: #0555FA;
+	margin-top: 12px;
+}
+.alert{
+	color: #FFF !important;
+}
+.alert-error{
+	color: #0555FA;
+	font-weight: 600;
+	margin-top: 20px;
+}
+.text-highlight{
+	color: #0555FA;
+    font-size: 1.5rem;
+}
+.link-agregar{
+    color: #0555FA;
+    font-weight: 600;
+    cursor: pointer;
+}
+.link-agregar:hover{
+    color: #ff82ae;
+    text-decoration: underline;
+}
+.icono-tooltip{
+	margin-left: 5px;
+}
+.posicion_matriz{
+	padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 20px !important;
+}
+.enviado{
+	color: #FFF;
+    background-color: #0555FA;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 2px 4px;
+}
+
+/* BANNER */
+.banner{
+	height: 50px;
+	background-color: #0555FA;
+	margin-bottom: 30px;
+}
+.banner > .logo{
+	float: left;
+}
+.banner > .logo > img{
+	height: 40px;
+	margin: 5px;
+}
+.banner > .menu{
+	float: right;
+}
+.banner > .menu > button{
+	float: right;
+	margin: 5px;
+	color: #0555FA !important;
+	background-color: #FFF !important;
+	border: 2px solid #FFF !important;
+	border-radius: 5px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* LOGIN */
+.login{	
+	position: relative;
+	height: 100vh;
+	background-image: url("assets/img/background01.png");
+	background-size: cover;
+	text-align: right;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.login > form{
+	position: absolute;
+	right: 100px;
+}
+.login > form > h1{
+	color: #FFF;
+	font-size: 10rem;
+	font-weight: 600;
+}
+.login > form > h3{
+	color: #FFF;
+	font-size: 1.8rem;
+}
+.login > form > .formulario > .input{
+	padding-left: 32px;
+}
+.login > form > .formulario > .form-group > input{
+	color: #FFF;
+	background-color: #ffffff6b !important;
+}
+.login > form > .formulario > .form-group > button{
+	color: #000;
+	background-color: #FFF !important;
+	cursor: pointer;
+}
+
+
+/* HOME */
+.home > table{
+	width: 100%;
+	margin-bottom: 25px;
+}
+.home > table > thead{
+	color: white;
+	background-color: #0555FA;
+}
+/*
+.home > table > tbody > .green-par{
+	border-left: 5px solid #D7E4BC;
+}
+.home > table > tbody > .green-impar{
+	border-left: 5px solid#C8D7A9;
+}
+.home > table > tbody > .ambar-par{
+	border-left: 5px solid #FFFF99;
+}
+.home > table > tbody > .ambar-impar{
+	border-left: 5px solid #fdfd7c;
+}
+.home > table > tbody > .red-par{
+	border-left: 5px solid #FFCCCC;
+}
+.home > table > tbody > .red-impar{
+	border-left: 5px solid #ffb8b8;
+}
+*/
+.home > table > tbody > .green-par{
+	background-color: #D7E4BC;
+}
+.home > table > tbody > .green-impar{
+	background-color: #C8D7A9;
+}
+.home > table > tbody > .ambar-par{
+	background-color: #FFFF99;
+}
+.home > table > tbody > .ambar-impar{
+	background-color: #fdfd7c;
+}
+.home > table > tbody > .red-par{
+	background-color: #FFCCCC;
+}
+.home > table > tbody > .red-impar{
+	background-color: #ffb8b8;
+}
+.home > table > tbody > tr > td > i{
+	cursor: pointer;
+}
+.home > .btn-black{
+	color: #FFF;
+	background-color: #0555FA;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
+
+
+.btn-colaborador{
+    border: 2px solid #0555FA;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.btn-colaborador:hover{
+    color: #fff;
+    background-color: #ff82ae;
+}
+
+.btn-colaborador-active{
+    color: #fff;
+    background-color: #0555FA;
+}
+.botones > .btn-paginacion{
+    font-size: 0.8rem;
+    border: 1px solid #212529;
+    border-radius: 5px;
+    padding: 4px 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.botones > .btn-paginacion:hover{
+    color: #fff;
+    background-color: #212529;
+}
+.instrucciones > .col-3{
+	padding-right: 30px;
+}
+.instrucciones > .col-9{
+	border-left: 2px solid #6a6a6a;
+	padding-left: 50px;
+}
+.instrucciones > div > h3{
+	color: #0555FA;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.instrucciones > div > h3 > .numeracion{
+	border: 2px solid #0555FA;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+.form-area-mejora{
+	width: 100%;
+}
+.form-area-mejora > div > .titulo-area{
+	color: #0555FA;
+    font-weight: 600;
+}
+.inline > div{
+	margin-right: 10px;
+}
+.input-area-mejora{
+	width: 100%;
+}
+.botones{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.botones > .btn{
+	font-weight: 600;
+	cursor: pointer;
+}
+.botones > .btn-enviar{
+	color: #fff;
+	background-color: #ff4d8c;
+	border: 2px solid #ff4d8c;
+    border-radius: 10px;
+	margin-right: 20px;
+}
+.botones > .btn-guardar{
+	color: #fff;
+	background-color: #0555FA;
+	border: 2px solid #0555FA;
+    border-radius: 10px;
+	margin-right: 20px;
+}
+.botones > .btn-limpiar{
+	background-color: #c3c3c3;
+	border: 2px solid #c3c3c3;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.botones > .btn-pdf{
+    color: #0555FA;
+	border: 2px solid #0555FA;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.botones > div > span{
+	cursor: pointer;
+}
+
+
+/* ADMIN */
+.menu-administrador{
+    background-color: #cccccd;
+    font-size: 1rem;
+    width: 150px;
+    min-height: calc( 100vh - 50px);
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    padding-left: 8px;
+}
+.menu-administrador > .lista-administrador{
+    line-height: 2rem;
+    list-style-type: none;
+    padding-left: 0px !important;
+    padding-top: 15px;
+}
+.menu-administrador > .lista-administrador > a{
+	color: #0555FA !important;
+}
+.menu-administrador > .lista-administrador > a:hover{
+	color: #ff82ae !important;
+}
+.contenido-administrador{
+	padding-left: 160px;
+	padding-right: 10px;
+}
+.icono-admin{
+	font-size: 1.5rem;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.icono-info{
+	font-size: 1.5rem;
+    margin-right: 10px;
+}
+.table-enel > tbody > tr > td > input{
+	width: 100%;
+}
+.table-enel > tbody > tr > td > input:disabled{
+	background-color: transparent !important;
+	border: none;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

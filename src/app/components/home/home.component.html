@@ -1,0 +1,126 @@
+<app-header></app-header>
+<div class="home container-fluid full-page-banner">
+	<h3>Bienvenido {{nombreUsuario}},</h3>
+	<p *ngIf="!mostrar_bajos">Estos son los resultados de tu encuesta Lidera. Elige las 4 afirmaciones más bajas:</p>
+	<p *ngIf="mostrar_bajos">Ingresa el plan de desarrollo para cada comportamiento:</p>
+	<table class="table" *ngIf="!mostrar_bajos">
+		<thead>
+			<th>#</th>
+			<th>Categoría</th>
+			<th>Comportamiento</th>
+			<th>Puntaje</th>
+			<th>Elegir</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let comportamiento of comportamientos; let i = index" [attr.data-index]="i"
+			 [ngClass]="{'green-par': comportamiento.clase == 'greenPar'
+									, 'green-impar': comportamiento.clase == 'greenImpar'
+									, 'ambar-par': comportamiento.clase == 'ambarPar'
+									, 'ambar-impar': comportamiento.clase == 'ambarImpar'
+									, 'red-par': comportamiento.clase == 'redPar'
+									, 'red-impar': comportamiento.clase == 'redImpar' }">
+				<td>{{i + 1}}</td>
+				<td>{{comportamiento.categoria}}</td>
+				<td>{{comportamiento.pregunta}}</td>
+				<td>{{comportamiento.puntaje}}</td>
+				<td><input type="checkbox" [value]="comportamiento.activo" [(ngModel)]="comportamiento.activo" [disabled]="completos"></td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-hover" *ngIf="mostrar_bajos">
+		<thead>
+			<th>#</th>
+			<th>Categoría</th>
+			<th>Comportamiento</th>
+			<th>Registrar acciones</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let comportamiento of comportamientos_bajos; let i = index" [attr.data-index]="i">
+				<td>{{i + 1}}</td>
+				<td>{{comportamiento.categoria}}</td>
+				<td>{{comportamiento.pregunta}}</td>
+				<td><i class="fa fa-pencil-square-o" (click)="ingresarPlan(i)"></i></td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-black" (click)="continuar()" *ngIf="!mostrar_bajos">Continuar</button>
+	<button class="btn btn-black" (click)="regresar()" *ngIf="mostrar_bajos">Regresar</button>
+</div>
+
+
+<!-- ingresarPlan -->
+<div class="modal fade" id="ingresarPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xlg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<h3>Comportamiento:</h3>
+				<h4>{{comportamiento_actual}}</h4>
+				<div *ngFor="let accion of acciones; let i = index" [attr.data-index]="i">
+					<h3>Acción #{{i + 1}}</h3>
+					<div>
+						<div class="form-group">
+							<label for="accion" class="">Acción para potenciar el comportamiento</label>
+							<textarea class="form-control" rows="4" id="accion" [(ngModel)]="accion.accion"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="frecuencia" class="">Frecuencia</label>
+								<select id="frecuencia" name="frecuencia" class="form-control" [(ngModel)]="accion.frecuencia">
+									<option value="? undefined:undefined ?"></option>
+			    				<option>Mensual</option>
+			    				<option>Diario</option>
+			    				<option>Interdiario</option>
+			    				<option>Sólo una vez</option>
+			    				<option>Otro</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inicio" class="">Inicio</label>
+								<input type="date" [(ngModel)]="accion.inicio" name="inicio" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="estado" class="">Status</label>
+								<select id="estado" name="estado" class="form-control" [(ngModel)]="accion.estado">
+									<option value="? undefined:undefined ?"></option>
+			    				<option>Finalizado</option>
+			    				<option>En proceso</option>
+			    				<option>No iniciado</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="form-group">
+								<label for="evidencia" class="">Evidencias</label>
+								<input type="file" [(ngModel)]="accion.evidencia" name="evidencia" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				<h5 (click)="agregarAccion()"><a>Agregar nueva acción</a></h5>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-guardar" data-dismiss="modal" (click)="guardar()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- errorCantidad -->
+<div class="modal fade" id="errorCantidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<p>Debes elegir al menos una competencia</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+

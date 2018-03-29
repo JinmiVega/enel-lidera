@@ -1,0 +1,88 @@
+<h3>Mantenimiento de Formaciones</h3>
+<table class="table table-hover table-enel table-formaciones">
+	<thead class="thead-inverse">
+		<tr>
+			<th>#</th>
+			<th>Formación</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let formacion of formaciones; let i = index" [attr.data-index]="i">
+			<td>{{i + 1}}</td>
+			<td>
+				<input type="text" name="" [disabled]="formacion.disabled" [(ngModel)]="formacion.nombre">
+			</td>
+			<td>
+				<i class="fa fa-pencil-square-o icono-admin" aria-hidden="true" (click)="editarFormacion(i)" *ngIf="formacion.disabled && !formacion.botones_disabled"></i>
+				<i class="fa fa-trash icono-admin" aria-hidden="true" (click)="mostrarConfirmacion(formacion)" *ngIf="formacion.disabled && !formacion.botones_disabled"></i>
+				<i class="fa fa-floppy-o icono-admin" aria-hidden="true" (click)="guardarFormacion(formacion)" *ngIf="!formacion.disabled"></i>
+				<i class="fa fa-times icono-admin" aria-hidden="true" (click)="cancelarFormacion(i)" *ngIf="!formacion.disabled"></i>
+			</td>
+		</tr>
+		<tr>
+			<td width="5%"></td>
+			<td width="87%"></td>
+			<td width="8%"></td>
+		</tr>
+	</tbody>
+</table>
+<p class="link-agregar" (click)="agregarFormacion()" *ngIf="!agregar_disabled">Agregar nueva formación</p>
+
+
+<!-- confirmaEliminar -->
+<div class="modal fade" id="confirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminación de formación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>Estás seguro que deseas eliminar la formación:</p>
+        <p class="text-highlight">{{nombreFormacionActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="eliminarFormacion(formacionActual)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- formacionEliminada -->
+<div class="modal fade" id="formacionEliminada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Se procedió a eliminar la formación</p>
+		<p class="text-highlight">{{nombreFormacionActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- cambiosGuardados -->
+<div class="modal fade" id="cambiosGuardados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Los datos modificados de la formación</p>
+		<p class="text-highlight">{{nombreFormacionActual}}</p>
+		<p>han sido registrados.</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<h3>Mantenimiento de Áreas de Mejora</h3>
+<table class="table table-hover table-enel table-areas">
+	<thead class="thead-inverse">
+		<tr>
+			<th>#</th>
+			<th>Competencia</th>
+			<th>Área de mejora</th>
+			<th>Formaciones</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let area of areas; let i = index" [attr.data-index]="i">
+			<td>{{i + 1}}</td>
+			<td>
+				<input type="text" name="" [disabled]="area.disabled" [(ngModel)]="area.nombre">
+			</td>
+			<td>
+      			<textarea class="form-control" rows="4" id="comment" [disabled]="area.disabled" [(ngModel)]="area.objetivo_mejora">{{area.objetivo_mejora}}</textarea>
+			</td>
+			<td>
+				<ul>
+					<li *ngFor="let area_formacion_string of area.area_formaciones; let j = index" [attr.data-index]="j">{{area_formacion_string}}</li>
+					<p class="link-agregar m-l-40" *ngIf="!area.disabled" (click)="editarFormacion(area)">Editar formaciones</p>
+				</ul>				
+			</td>
+			<td>
+				<i class="fa fa-pencil-square-o icono-admin" aria-hidden="true" (click)="editarArea(i)" *ngIf="area.disabled && !area.botones_disabled"></i>
+				<i class="fa fa-trash icono-admin" aria-hidden="true" (click)="mostrarConfirmacion(area)" *ngIf="area.disabled && !area.botones_disabled"></i>
+				<i class="fa fa-floppy-o icono-admin" aria-hidden="true" (click)="guardarArea(area)" *ngIf="!area.disabled"></i>
+				<i class="fa fa-times icono-admin" aria-hidden="true" (click)="cancelarArea(i)" *ngIf="!area.disabled"></i>
+			</td>
+		</tr>
+		<tr>
+			<td width="5%"></td>
+			<td width="17%"></td>
+			<td width="50%"></td>
+			<td width="20%"></td>
+			<td width="8%"></td>
+		</tr>
+	</tbody>
+</table>
+<p class="link-agregar" (click)="agregarArea()" *ngIf="!agregar_disabled">Agregar nueva área</p>
+
+
+<!-- confirmaEliminar -->
+<div class="modal fade" id="confirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminación de área</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>Estás seguro que deseas eliminar el área:</p>
+        <p class="text-highlight">{{nombreAreaActual}}</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="eliminarArea(areaActual)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- areaEliminada -->
+<div class="modal fade" id="areaEliminada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Se procedió a eliminar el área</p>
+		<p class="text-highlight">{{nombreAreaActual}}</p>
+		<p>ha sido registrada.</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- cambiosGuardados -->
+<div class="modal fade" id="cambiosGuardados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Los datos modificados del área</p>
+		<p class="text-highlight">{{nombreAreaActual}}</p>
+		<p>han sido registrados.</p>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-guardar" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- editarFormacion -->
+<div class="modal fade" id="editarFormacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+		<p>Indicar las formaciones asociadas al área</p>
+		<p class="text-highlight">{{nombreAreaActual}}:</p>
+		<div *ngFor="let formacion of formaciones; let i = index" [attr.data-index]="i">
+			<input type="checkbox" [value]="formacion.activo" [(ngModel)]="formacion.activo">
+			<span>{{formacion.nombre}}</span>
+		</div>
+      </div>
+      <div class="modal-footer botones">
+        <button type="button" class="btn btn-limpiar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-guardar" (click)="guardarFormaciones()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
